@@ -76,6 +76,20 @@ const loginUser = asyncHandler(async (req, res) => {
 
 })
 
+// @desc get current user data
+// route /api/users/me
+// @access Private 
+const getMe = asyncHandler(async (req, res) => {
+
+    const user = {
+        id: req.user._id,
+        email: req.user.email,
+        name: req.user.name
+    }
+
+    res.status(200).json(user)
+})
+
 // Generate token function
 
 const generateToken = (id) => {
@@ -84,5 +98,6 @@ const generateToken = (id) => {
 
 module.exports = {
     registerUser,
-    loginUser
+    loginUser,
+    getMe
 }
